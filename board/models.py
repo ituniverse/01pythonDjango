@@ -10,7 +10,7 @@ class Board(models.Model):
     modify_date = models.DateTimeField(
             blank=True, null=True)
     def publish(self):
-        self.published_date = timezone.now()
+        self.modify_date = timezone.now()
         self.save()
     def __str__(self):
         return self.title
