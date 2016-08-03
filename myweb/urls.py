@@ -13,23 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-
-"""
-- 라우팅, 'url resolver를 위한 패턴 목록'
-- regex를 사용.
-
-^ 문자열이 시작할 때
-$ 문자열이 끝날 때
-\d 숫자
-+ 바로 앞에 나오는 항목이 계속 나올 때
-() 패턴의 부분을 저장할 때
-
-"""
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.contrib import admin
 
 urlpatterns = [
-    # url(r'^$', 'mysite.views.home', name='home'),
     url(r'^admin/', admin.site.urls),
-    url(r'', include('board.urls')),
 ]

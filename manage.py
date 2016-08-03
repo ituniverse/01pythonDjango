@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-""" 사이트 관리 도구
-"""
 import os
 import sys
 

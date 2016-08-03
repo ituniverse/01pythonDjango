@@ -9,12 +9,10 @@ https://docs.djangoproject.com/en/1.10/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
-#웹 사이트 설정
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-from django.conf.global_settings import TIME_ZONE, STATIC_ROOT
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -22,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'av#((_osdf1ccni9sqhvkda7e9)fssgai$rta-ed_o-1z7$50@'
+SECRET_KEY = '_68itxw+4f_1w=a9xg50gbmn*n&7k9in7q9o+*&9k*^ngy-&w%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -108,9 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-# 1. 타임존을 설정해 준다.
-# TIME_ZONE = 'UTC'
-TIME_ZONE = 'Asia/Seoul'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -122,6 +118,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-# 2. 정적 파일 경로를 추가.
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
