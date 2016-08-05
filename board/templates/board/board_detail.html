@@ -1,0 +1,52 @@
+{% extends 'board/base.html' %}
+
+{% block content %}
+    <table>
+        <tbody>
+            <tr>{{ boardOne.title }}</a></tr>
+            <br>
+            <tr>{{ boardOne.contents }}</tr>
+            <!-- <tr>{{ board.contents|linebreaksbr }}</tr> -->
+            <tr> / 등록일자: {{ boardOne.created_date }}</tr>
+
+            <!-- 출판 시 출판 일자 확인. -->
+           <!-- {% if boardOne.modify_date %}
+            <tr> / 수정(출판)일자: {{ boardOne.modify_date }}</tr>
+            {% endif %}-->
+
+            {% if boardOne.modify_date %}
+                <div class="date">
+                    {{ boardOne.modify_date }}
+                </div>
+            {% else %}
+                <a class="btn btn-default" href="{% url 'board_publish' pk=boardOne.pk %}">Publish</a>
+            {% endif %}
+
+            <!-- 수정 버튼 -->
+            <a class="btn btn-default" href="{% url 'board_edit' pk=boardOne.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+
+            <!-- 삭제 버튼 -->
+            <a class="btn btn-default" href="{% url 'board_remove' pk=boardOne.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+        </tbody>
+    </table>
+
+    <hr>
+    <a class="btn btn-default" href="{% url 'add_board_comment' pk=boardOne.pk %}">Add comment</a>
+    {% for comment in boardOne.comments.all %}
+        {% if user.is_authenticated or comment.approved_comment %}
+        <div class="comment">
+            <div class="date">
+                {{ comment.created_date }}
+                {% if not comment.approved_comment %}
+                    <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                {% endif %}
+            </div>
+            <strong>{{ comment.writer }}</strong>
+            <p>{{ comment.contents|linebreaks }}</p>
+        </div>
+        {% endif %}
+    {% empty %}
+        <p>No comments here yet :(</p>
+    {% endfor %}
+{% endblock content %}

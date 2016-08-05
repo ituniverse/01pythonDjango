@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/board.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="page-header">
+        <a href="{% url 'board_list' %}"><h1> board </h1></a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'board_new' %}" class="top-menu">글쓰기<span class="glyphicon glyphicon-plus"></span></a>
+            <a href="{% url 'board_draft_list' %}" class="top-menu">간략히 보기<span class="glyphicon glyphicon-edit"></span></a>
+            <p class="top-menu">Hello {{ user.username }}</p><small>(<a href="{% url 'logout' %}">Log out</a>)</small>
+        {% else %}
+            <a href="{% url 'login' %}" class="top-menu">로그인<span class="glyphicon glyphicon-lock"></span></a>
+        {% endif %}
+    </div>
+   <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

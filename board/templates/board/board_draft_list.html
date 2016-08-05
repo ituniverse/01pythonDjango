@@ -1,0 +1,12 @@
+{% extends 'board/base.html' %}
+
+{% block content %}
+    {% for board in list %}
+        <div class="post">
+            <p class="date">작성일자 {{ board.created_date|date:'d-m-Y' }}</p>
+            <h1><a href="{% url 'board_detail' pk=board.pk %}">{{ board.title }}</a></h1>
+            <p>{{ board.contents|truncatechars:200 }}</p>
+        </div>
+        <hr>
+    {% endfor %}
+{% endblock %}
